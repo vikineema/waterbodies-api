@@ -224,3 +224,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Other files
+sample_waterbodies.db
