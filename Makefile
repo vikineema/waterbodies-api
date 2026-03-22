@@ -20,3 +20,7 @@ add-sample-data:
 
 db-shell:
 	docker compose exec -u postgres db-postgres psql
+
+lint-src:
+	ruff check --select I --fix server/        
+	ruff format --verbose server/
