@@ -36,7 +36,7 @@ services:
       start_period: 1m
 
   python-env:
-    image: vikineema/deafrica-water-quality:sha-c60eb53
+    image: vikineema/deafrica-water-quality:sha-0acf8b2
     environment:
       - WATERBODIES_DB_NAME=${POSTGRES_DB}
       - WATERBODIES_DB_USER=${POSTGRES_USER}
