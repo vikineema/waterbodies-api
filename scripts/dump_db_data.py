@@ -15,7 +15,9 @@ from water_quality.summaries.summary import (
 from waterbodies.db import get_waterbodies_engine, get_test_waterbodies_engine
 from waterbodies.db_models import WaterbodyBase
 from waterbodies.surface_area_change import create_waterbodies_observations_table
-from waterbodies.historical_extent import add_waterbodies_polygons_to_db, create_waterbodies_historical_extent_table
+from waterbodies.historical_extent import add_waterbodies_polygons_to_db
+from waterbodies.surface_area_change import add_waterbody_observations_to_db
+
 log_level = getattr(logging, "INFO")
 _log = setup_logging(log_level)
 
@@ -45,7 +47,8 @@ sample_waterbodies = gpd.read_file(file_db_path, layer="waterbodies_historical_e
 add_waterbodies_polygons_to_db(sample_waterbodies, engine)
 
 # Add surface area change sample data
-create_waterbodies_observations_table(engine)
+sample_waterbody_observations = pd.read_sql("SELECT * FROM waterbodies_observations", con=file_db_engine)
+add_waterbody_observations_to_db(waterbody_observations=sample_waterbody_observations, engine=engine)
 
 # Add water quality summaries sample data
 sample_water_quality_observations = pd.read_sql("SELECT * FROM waterbodies_water_quality ", con=file_db_engine)
