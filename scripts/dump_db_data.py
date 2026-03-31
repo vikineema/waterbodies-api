@@ -44,16 +44,26 @@ _log.info(f"File-based SQLite database  db url: {file_db_engine.url}")
 
 # Add historical extent sample data
 sample_waterbodies = gpd.read_file(file_db_path, layer="waterbodies_historical_extent")
+_log.info(f"Found {len(sample_waterbodies)} sample waterbodies in the file-based database.")
 add_waterbodies_polygons_to_db(sample_waterbodies, engine)
+print("")
 
 # Add surface area change sample data
 sample_waterbody_observations = pd.read_sql("SELECT * FROM waterbodies_observations", con=file_db_engine)
+_log.info(f"Found {len(sample_waterbody_observations)} sample waterbody observations in the file-based database.")
 add_waterbody_observations_to_db(waterbody_observations=sample_waterbody_observations, engine=engine)
+print("")
+
 
 # Add water quality summaries sample data
 sample_water_quality_observations = pd.read_sql("SELECT * FROM waterbodies_water_quality ", con=file_db_engine)
+_log.info(f"Found {len(sample_water_quality_observations)} sample water quality observations in the file-based database.")
 add_water_quality_observations_to_db(sample_water_quality_observations, engine)
+print("")
 
 # Add water quality percentiles sample data
 sample_waterbody_percentiles = pd.read_sql("SELECT * FROM waterbodies_water_quality_percentiles", con=file_db_engine)
+_log.info(f"Found {len(sample_waterbody_percentiles)} sample water quality percentiles in the file-based database.")
 add_water_quality_percentiles_to_db(sample_waterbody_percentiles, engine)
+print("")
+
